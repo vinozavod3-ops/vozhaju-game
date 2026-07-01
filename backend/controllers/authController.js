@@ -12,7 +12,7 @@ exports.register = async (req, res, next) => {
   try {
     const parsedData = authSchema.safeParse(req.body);
     if (!parsedData.success) {
-      return res.status(400).json({ message: parsedData.error.errors[0].message });
+      return res.status(400).json({ message: parsedData.error.issues[0].message });
     }
     const { username, password } = parsedData.data;
     
@@ -48,7 +48,7 @@ exports.login = async (req, res, next) => {
   try {
     const parsedData = authSchema.safeParse(req.body);
     if (!parsedData.success) {
-      return res.status(400).json({ message: parsedData.error.errors[0].message });
+      return res.status(400).json({ message: parsedData.error.issues[0].message });
     }
     const { username, password } = parsedData.data;
     

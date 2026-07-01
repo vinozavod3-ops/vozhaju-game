@@ -211,7 +211,6 @@ const checkSelectedWord = () => {
         cellColors.value[idx] = colorClass;
       }
     });
-    store.addCoins(10);
     
     if (foundWords.value.length === allWords.value.length) {
       isGameActive.value = false;

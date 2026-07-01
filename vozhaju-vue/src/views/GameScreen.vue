@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, computed, onBeforeUnmount } from 'vue';
+import { ref, onMounted, computed, onBeforeUnmount, watch } from 'vue';
 import { useRouter } from 'vue-router';
 import { useGameStore } from '../stores/gameStore';
 import { generateGridFromWords } from '../utils/engine';
@@ -65,8 +65,18 @@ onMounted(() => {
     return;
   }
   
-  startGame();
-  AudioController.startBarbatBGM();
+  if (Object.keys(store.wordsData).length === 0) {
+    const unwatch = watch(() => store.wordsData, (newVal) => {
+      if (Object.keys(newVal).length > 0) {
+        startGame();
+        AudioController.startBarbatBGM();
+        unwatch();
+      }
+    }, { deep: true });
+  } else {
+    startGame();
+    AudioController.startBarbatBGM();
+  }
 });
 
 const startGame = () => {

@@ -3,7 +3,7 @@ import { toast } from 'vue3-toastify';
 import { useGameStore } from '../stores/gameStore';
 
 const api = axios.create({
-  baseURL: 'https://vozhaju-game.onrender.com/api',
+  baseURL: 'https://vozhaju-game1.onrender.com/api',
   headers: {
     'Content-Type': 'application/json'
   }

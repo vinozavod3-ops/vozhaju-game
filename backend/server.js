@@ -27,6 +27,28 @@ mongoose.connect(process.env.MONGODB_URI)
   .catch(err => console.error('❌ Хатогӣ ҳангоми пайвастшавӣ ба MongoDB:', err));
 
 // Routes
+app.get('/api/seed', async (req, res) => {
+    try {
+        const Level = require('./models/Level');
+        const Word = require('./models/Word');
+        const fs = require('fs');
+        const { STORY_LEVELS, CHALLENGE_LEVELS } = require('./tempData.js');
+        
+        await Level.deleteMany({});
+        await Word.deleteMany({});
+        
+        const wordsData = JSON.parse(fs.readFileSync('words_export.json', 'utf-8'));
+        await Word.insertMany(wordsData);
+        
+        const storyLevels = STORY_LEVELS.map(l => ({ ...l, type: 'story' }));
+        const challengeLevels = CHALLENGE_LEVELS.map(l => ({ ...l, type: 'challenge' }));
+        await Level.insertMany([...storyLevels, ...challengeLevels]);
+        
+        res.json({ message: 'Seeded successfully! Words: ' + wordsData.length + ', Levels: ' + (storyLevels.length + challengeLevels.length) });
+    } catch(err) {
+        res.status(500).json({ error: err.toString() });
+    }
+});
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/game', require('./routes/gameRoutes'));
 

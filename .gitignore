@@ -1,0 +1,6 @@
+node_modules/
+backend/node_modules/
+vozhaju-vue/node_modules/
+.env
+backend_source.zip
+frontend_source.zip

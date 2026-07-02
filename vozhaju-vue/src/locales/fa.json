@@ -29,6 +29,7 @@
   "hint_all_found": "شما پیش‌تر همه واژه‌ها را پیدا کرده‌اید!",
   "game_title": "واژه‌جوی شاهنامه",
   "game_subtitle": "«به نام خداوند جان و خرد...»",
+  "game_mission": "هدف ما از ساخت این بازی با استفاده از واژه‌های ناب فارسی بالا بردن سطح دانش می‌باشد.",
   "menu_story": "پیشدادیان (بازی)",
   "menu_challenge": "هفت خوان (چالش)",
   "menu_about": "درباره ما",
@@ -45,5 +46,12 @@
   "settings_sound": "آواز (Sound)",
   "settings_music": "نوا و آوازها",
   "settings_on": "روشن",
-  "settings_off": "خاموش"
+  "settings_off": "خاموش",
+  "login_subtitle": "ورود به حساب",
+  "register_subtitle": "ساخت حساب",
+  "username_placeholder": "نام خود را بنویسید",
+  "password_placeholder": "گذرواژه را بنویسید",
+  "error_empty": "لطفاً کادرها را پر کنید",
+  "error_user_short": "نام کاربر باید حداقل ۳ حرف باشد",
+  "error_pass_short": "گذرواژه باید حداقل ۶ حرف باشد"
 }

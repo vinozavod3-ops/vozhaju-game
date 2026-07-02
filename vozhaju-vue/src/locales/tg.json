@@ -29,6 +29,7 @@
   "hint_all_found": "Шумо аллакай ҳамаи вожаҳоро ёфтаед!",
   "game_title": "Вожаҷӯи Шоҳнома",
   "game_subtitle": "«Ба номи Худованди ҷону хирад...»",
+  "game_mission": "Мақсади мо барои сохтани ин бозӣ бо истифода аз вожаҳои ноби форсӣ баланд бардоштани сатҳи дониш мебошад.",
   "menu_story": "Пешдодиён (Бозӣ)",
   "menu_challenge": "Ҳафт хон (Чолиш)",
   "menu_about": "Дар бораи мо",
@@ -45,5 +46,12 @@
   "settings_sound": "Овоз (Sound)",
   "settings_music": "Наво ва Овозҳо",
   "settings_on": "Равшан",
-  "settings_off": "Хомӯш"
+  "settings_off": "Хомӯш",
+  "login_subtitle": "Ба профил дароед",
+  "register_subtitle": "Профил созед",
+  "username_placeholder": "Номи худро нависед",
+  "password_placeholder": "Пароли худро нависед",
+  "error_empty": "Лутфан майдонҳоро пур кунед",
+  "error_user_short": "Номи корбар бояд камаш 3 ҳарф бошад",
+  "error_pass_short": "Рамз бояд камаш 6 аломат бошад"
 }

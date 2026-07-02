@@ -59,6 +59,9 @@ const userRank = computed(() => getRankForScore(store.score));
           <span class="text-6xl md:text-7xl">🏰</span><br>{{ $t('game_title') }}
         </h1>
         <p class="text-amber-800 font-bold italic text-lg md:text-xl px-4 opacity-80">{{ $t('game_subtitle') }}</p>
+        <p class="text-amber-900/70 text-xs md:text-sm px-6 max-w-xs mx-auto font-medium leading-tight">
+          {{ $t('game_mission') }}
+        </p>
       </div>
 
       <div class="w-full max-w-sm space-y-4">

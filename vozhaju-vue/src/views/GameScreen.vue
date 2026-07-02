@@ -28,6 +28,9 @@ const isShakeAnimation = ref(false);
 const allWordsPaths = ref({});
 const cellColors = ref({});
 const wordColorsMap = ref({});
+const bonusCells = ref([]);
+const floatingBonus = ref(null);
+const jumpIndices = ref([]);
 
 const WORD_COLORS = [
   'bg-red-500', 'bg-blue-500', 'bg-purple-500', 'bg-pink-500', 
@@ -112,7 +115,20 @@ const startGame = () => {
   cellColors.value = {};
   wordColorsMap.value = {};
   isGameActive.value = true;
+  bonusCells.value = [];
+  jumpIndices.value = [];
   
+  // Assign 1-2 random bonus cells from valid word paths
+  const allPathIndices = Object.values(result.paths || {}).flat();
+  if (allPathIndices.length > 0) {
+    const uniqueIndices = [...new Set(allPathIndices)];
+    const numBonus = Math.min(2, Math.max(1, Math.floor(uniqueIndices.length / 10)));
+    for (let i = 0; i < numBonus; i++) {
+      const bIdx = uniqueIndices[Math.floor(Math.random() * uniqueIndices.length)];
+      if (!bonusCells.value.includes(bIdx)) bonusCells.value.push(bIdx);
+    }
+  }
+
   lastFoundTime.value = 0;
   comboCount.value = 0;
   maxCombo.value = 0;
@@ -222,6 +238,21 @@ const checkSelectedWord = () => {
         cellColors.value[idx] = colorClass;
       }
     });
+    
+    // Jump animation
+    jumpIndices.value = [...selectedIndices.value];
+    setTimeout(() => { jumpIndices.value = [] }, 500);
+
+    // Bonus check
+    const collectedBonus = selectedIndices.value.filter(idx => bonusCells.value.includes(idx));
+    if (collectedBonus.length > 0) {
+      const bonusAmount = collectedBonus.length * 5;
+      store.addCoins(bonusAmount);
+      floatingBonus.value = { msg: `+${bonusAmount} 🪙`, id: Date.now() };
+      setTimeout(() => floatingBonus.value = null, 1500);
+      bonusCells.value = bonusCells.value.filter(idx => !collectedBonus.includes(idx));
+    }
+
     
     const now = Date.now();
     if (lastFoundTime.value > 0 && (now - lastFoundTime.value) < 6000) {
@@ -403,6 +434,12 @@ const exitWinModal = () => {
 
         <span class="text-amber-800 font-bold mb-1"><Search class="w-4 h-4 inline" /> {{ $t('word_search') }}</span>
         <div class="text-3xl font-black text-amber-950 min-h-[40px] tracking-widest">{{ currentWordPreview }}</div>
+        
+        <transition name="floating-text">
+          <div v-if="floatingBonus" :key="floatingBonus.id" class="absolute top-0 text-xl font-black text-yellow-500 drop-shadow-md z-30 pointer-events-none">
+            {{ floatingBonus.msg }}
+          </div>
+        </transition>
       </div>
 
       <!-- Grid -->
@@ -419,15 +456,18 @@ const exitWinModal = () => {
           :data-index="index"
           @mousedown="handlePointerDown(index)"
           @touchstart.prevent="handlePointerDown(index)"
+          :style="{ animationDelay: `${(index % gridSize + Math.floor(index / gridSize)) * 50}ms` }"
           :class="[
-            'letter-cell aspect-square flex items-center justify-center font-black text-2xl rounded-xl transition-colors select-none',
+            'letter-cell aspect-square flex items-center justify-center font-black text-2xl rounded-xl transition-colors select-none relative animate-cell-enter',
+            jumpIndices.includes(index) ? 'animate-bounce-win' : '',
             letter === '' ? 'opacity-0 pointer-events-none' : 'cursor-pointer',
             letter !== '' && foundCells.includes(index) ? `${cellColors[index]} text-white shadow-inner scale-95 opacity-90` : 
             letter !== '' && selectedIndices.includes(index) ? 'bg-orange-400 text-amber-950 scale-105 shadow-md' : 
             letter !== '' && hintedCells.includes(index) ? 'bg-yellow-300 text-amber-900 ring-2 ring-yellow-500 animate-pulse shadow-lg' :
-            letter !== '' ? 'bg-amber-100 text-amber-950 shadow-[0_4px_0_0_rgba(180,83,9,1)] active:shadow-none active:translate-y-1' : ''
+            letter !== '' ? ((Math.floor(index / gridSize) + (index % gridSize)) % 2 === 0 ? 'bg-amber-50 text-amber-950' : 'bg-orange-100 text-amber-950') : ''
           ]">
           {{ letter }}
+          <span v-if="bonusCells.includes(index)" class="absolute -top-2 -right-2 text-sm drop-shadow-md animate-pulse pointer-events-none">⭐</span>
         </div>
       </div>
       
@@ -508,5 +548,30 @@ const exitWinModal = () => {
   0% { transform: scale(0.5) translateY(20px); opacity: 0; }
   50% { transform: scale(1.2) translateY(-10px); opacity: 1; }
   100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+.animate-cell-enter {
+  animation: cell-enter 0.4s backwards cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+@keyframes cell-enter {
+  0% { transform: scale(0.3) translateY(-30px); opacity: 0; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+.animate-bounce-win {
+  animation: bounce-win 0.5s ease-out;
+}
+@keyframes bounce-win {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-15px) scale(1.1); }
+}
+
+.floating-text-enter-active {
+  animation: float-up 1.5s ease-out forwards;
+}
+@keyframes float-up {
+  0% { transform: translateY(0) scale(0.5); opacity: 0; }
+  20% { transform: translateY(-20px) scale(1.2); opacity: 1; }
+  100% { transform: translateY(-60px) scale(1); opacity: 0; }
 }
 </style>

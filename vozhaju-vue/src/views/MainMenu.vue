@@ -4,7 +4,7 @@ import { useRouter } from 'vue-router';
 import { useGameStore } from '../stores/gameStore';
 import { useI18n } from 'vue-i18n';
 import { Settings, Info, Swords, ScrollText, Trophy, Coins, Globe } from 'lucide-vue-next';
-import { getUserRank } from '../utils/ranks';
+import { getRankForScore } from '../utils/ranks';
 import DailyRewardModal from '../components/DailyRewardModal.vue';
 
 const router = useRouter();

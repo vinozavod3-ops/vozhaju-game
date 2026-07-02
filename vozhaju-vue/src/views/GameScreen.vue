@@ -44,6 +44,12 @@ const winCoins = ref(0);
 const winScore = ref(0);
 const toastMessage = ref(null);
 
+const lastFoundTime = ref(0);
+const comboCount = ref(0);
+const maxCombo = ref(0);
+const showComboAnimation = ref(false);
+const comboMessage = ref('');
+
 const gridStyle = computed(() => {
   return {
     gridTemplateColumns: `repeat(${gridSize.value}, 1fr)`
@@ -106,6 +112,11 @@ const startGame = () => {
   cellColors.value = {};
   wordColorsMap.value = {};
   isGameActive.value = true;
+  
+  lastFoundTime.value = 0;
+  comboCount.value = 0;
+  maxCombo.value = 0;
+  
   startTimer();
 };
 
@@ -212,6 +223,23 @@ const checkSelectedWord = () => {
       }
     });
     
+    const now = Date.now();
+    if (lastFoundTime.value > 0 && (now - lastFoundTime.value) < 6000) {
+      comboCount.value++;
+    } else {
+      comboCount.value = 1;
+    }
+    lastFoundTime.value = now;
+    if (comboCount.value > maxCombo.value) maxCombo.value = comboCount.value;
+
+    if (comboCount.value >= 2) {
+      comboMessage.value = `COMBO x${comboCount.value}! 🔥`;
+      showComboAnimation.value = true;
+      setTimeout(() => showComboAnimation.value = false, 1500);
+      // Play a slightly higher pitched sound for combo
+      AudioController.playSelect(); 
+    }
+
     if (foundWords.value.length === allWords.value.length) {
       isGameActive.value = false;
       stopTimer();
@@ -228,12 +256,23 @@ const checkSelectedWord = () => {
       if (stars === 3) reward = 30;
       else if (stars === 2) reward = 20;
 
+      let scoreEarned = stars * 10;
+
+      // Apply combo multiplier
+      let multiplier = 1;
+      if (maxCombo.value >= 6) multiplier = 2.5;
+      else if (maxCombo.value >= 4) multiplier = 2;
+      else if (maxCombo.value >= 2) multiplier = 1.5;
+
+      reward = Math.floor(reward * multiplier);
+      scoreEarned = Math.floor(scoreEarned * multiplier);
+
       store.addCoins(reward);
       const levelDisplayName = locale.value === 'fa' ? t('level', { num: levelData.value.id }) : levelData.value.name;
       winMessage.value = t('win_message', { name: levelDisplayName });
       winStars.value = stars;
       winCoins.value = reward;
-      winScore.value = stars * 10;
+      winScore.value = scoreEarned;
       setTimeout(() => showWinModal.value = true, 500);
     }
   } else if (selectedIndices.value.length > 1) {
@@ -354,8 +393,14 @@ const exitWinModal = () => {
         </div>
       </div>
 
-      <!-- Word Preview -->
-      <div class="mb-4 flex flex-col items-center">
+      <!-- Word Preview & Combo Area -->
+      <div class="mb-4 flex flex-col items-center relative">
+        <transition name="combo-pop">
+          <div v-if="showComboAnimation" class="absolute -top-8 text-2xl font-black text-red-500 drop-shadow-lg z-20 whitespace-nowrap">
+            {{ comboMessage }}
+          </div>
+        </transition>
+
         <span class="text-amber-800 font-bold mb-1"><Search class="w-4 h-4 inline" /> {{ $t('word_search') }}</span>
         <div class="text-3xl font-black text-amber-950 min-h-[40px] tracking-widest">{{ currentWordPreview }}</div>
       </div>
@@ -448,5 +493,20 @@ const exitWinModal = () => {
 }
 .animate-shake {
   animation: shake 0.4s ease-in-out;
+}
+.combo-pop-enter-active {
+  animation: combo-bounce 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.combo-pop-leave-active {
+  transition: all 0.3s ease;
+}
+.combo-pop-leave-to {
+  opacity: 0;
+  transform: translateY(-20px) scale(0.8);
+}
+@keyframes combo-bounce {
+  0% { transform: scale(0.5) translateY(20px); opacity: 0; }
+  50% { transform: scale(1.2) translateY(-10px); opacity: 1; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
 }
 </style>

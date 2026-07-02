@@ -3,8 +3,9 @@ import { computed, onMounted, ref, onUnmounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { useGameStore } from '../stores/gameStore';
 import { useI18n } from 'vue-i18n';
-import { getRankForScore } from '../utils/ranks';
 import { Settings, Info, Swords, ScrollText, Trophy, Coins, Globe } from 'lucide-vue-next';
+import { getUserRank } from '../utils/ranks';
+import DailyRewardModal from '../components/DailyRewardModal.vue';
 
 const router = useRouter();
 const store = useGameStore();
@@ -20,6 +21,10 @@ const updateOnlineStatus = () => {
 };
 
 onMounted(() => {
+  store.fetchProfile().then(() => {
+    // Only check daily reward after profile is fetched so it syncs properly
+    store.checkDailyReward();
+  });
   window.addEventListener('online', updateOnlineStatus);
   window.addEventListener('offline', updateOnlineStatus);
 });
@@ -131,5 +136,14 @@ const userRank = computed(() => getRankForScore(store.score));
       </div>
       
     </div>
+    
+    <!-- Daily Reward Modal -->
+    <DailyRewardModal 
+      :show="store.showDailyReward"
+      :streak="store.dailyRewardData?.streak"
+      :coinsReward="store.dailyRewardData?.coinsReward"
+      :hintsReward="store.dailyRewardData?.hintsReward"
+      @claim="store.claimDailyReward"
+    />
   </div>
 </template>

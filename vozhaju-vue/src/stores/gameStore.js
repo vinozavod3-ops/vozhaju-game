@@ -17,7 +17,9 @@ export const useGameStore = defineStore('game', {
     dictionary: {},
     soundEnabled: true,
     levelsData: [], // Stores all fetched levels
-    wordsData: {} // Global dictionary from DB
+    wordsData: {}, // Global dictionary from DB
+    showDailyReward: false,
+    dailyRewardData: null
   }),
   getters: {
     score(state) {
@@ -151,6 +153,61 @@ export const useGameStore = defineStore('game', {
       } catch (e) {
         console.warn('Network error fetching profile, using offline mode');
         this.loadLocalProfile();
+      }
+    },
+    checkDailyReward() {
+      const now = new Date();
+      const todayStr = `${now.getFullYear()}-${now.getMonth()}-${now.getDate()}`;
+      
+      const lastLogin = localStorage.getItem('vozhajuLastLogin');
+      let streak = parseInt(localStorage.getItem('vozhajuStreak') || '0', 10);
+
+      if (lastLogin === todayStr) {
+        return null; // Already claimed today
+      }
+
+      if (lastLogin) {
+        const lastDate = new Date(lastLogin);
+        const diffTime = Math.abs(now - lastDate);
+        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)); 
+        
+        if (diffDays === 1) {
+          streak += 1;
+        } else {
+          streak = 1;
+        }
+      } else {
+        streak = 1;
+      }
+
+      // Calculate rewards
+      let coinsReward = 10;
+      let hintsReward = 0;
+
+      if (streak % 7 === 0) {
+        coinsReward = 100;
+        hintsReward = 3;
+      } else if (streak >= 3) {
+        coinsReward = 30;
+        hintsReward = 1;
+      } else if (streak === 2) {
+        coinsReward = 20;
+      }
+
+      localStorage.setItem('vozhajuLastLogin', todayStr);
+      localStorage.setItem('vozhajuStreak', streak.toString());
+
+      this.dailyRewardData = { streak, coinsReward, hintsReward };
+      this.showDailyReward = true;
+      return this.dailyRewardData;
+    },
+    claimDailyReward() {
+      if (this.dailyRewardData) {
+        this.coins += this.dailyRewardData.coinsReward;
+        this.freeHints += this.dailyRewardData.hintsReward;
+        this.syncProgress();
+        this.showDailyReward = false;
+        this.dailyRewardData = null;
       }
     },
     async fetchLevels() {

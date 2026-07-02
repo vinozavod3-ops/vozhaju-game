@@ -21,10 +21,15 @@ exports.syncProgress = async (req, res, next) => {
   }
 };
 
+const { STORY_LEVELS, CHALLENGE_LEVELS } = require('../tempData');
+
 exports.getLevels = async (req, res, next) => {
   try {
-    const levels = await Level.find().sort({ id: 1 });
-    res.json(levels);
+    const allLevels = [
+      ...STORY_LEVELS.map(l => ({ ...l, type: 'story' })),
+      ...CHALLENGE_LEVELS.map(l => ({ ...l, type: 'challenge' }))
+    ];
+    res.json(allLevels);
   } catch (err) {
     next(err);
   }

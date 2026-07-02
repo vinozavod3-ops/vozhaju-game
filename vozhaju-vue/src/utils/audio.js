@@ -118,8 +118,11 @@ class AudioControllerClass {
         initAudio();
         
         isBgmPlaying = true;
-        // Persian scale 
-        const scale = [261.63, 293.66, 329.63, 349.23, 392.00, 440.00, 493.88]; 
+        // Happy Pentatonic / Persian Mahour scale (C, D, E, G, A)
+        const scale = [261.63, 293.66, 329.63, 392.00, 440.00, 523.25, 587.33];
+        
+        // Simple rhythmic pattern generator
+        let noteCount = 0;
         
         const playAncientNote = () => {
             if (!isBgmPlaying || !store.soundEnabled) {
@@ -127,35 +130,33 @@ class AudioControllerClass {
                 return;
             }
 
+            // More upbeat rhythm: short notes intermixed with slightly longer ones
+            const isShort = noteCount % 4 !== 0;
+            const dur = isShort ? 0.3 : 0.8;
+            const nextTime = isShort ? 250 : 500;
+            noteCount++;
+
             const freq = scale[Math.floor(Math.random() * scale.length)];
-            const dur = 2.0; 
             const t = audioCtx.currentTime;
             
-            // Ancient Harp (Chang) / Santur
+            // Santur / Happy string sound
             const osc1 = audioCtx.createOscillator();
-            const osc2 = audioCtx.createOscillator();
             const gain = audioCtx.createGain();
             
-            osc1.type = 'sine';
+            osc1.type = 'triangle';
             osc1.frequency.value = freq;
             
-            osc2.type = 'triangle'; 
-            osc2.frequency.value = freq * 2; // Octave overtone for metallic ring
-            
             gain.gain.setValueAtTime(0, t);
-            gain.gain.linearRampToValueAtTime(0.04, t + 0.02); // Pluck/Hammer strike
-            gain.gain.exponentialRampToValueAtTime(0.001, t + dur); // Ringing decay
+            gain.gain.linearRampToValueAtTime(0.08, t + 0.05); // Brighter pluck
+            gain.gain.exponentialRampToValueAtTime(0.001, t + dur); // Quick decay
             
             osc1.connect(gain);
-            osc2.connect(gain);
             gain.connect(audioCtx.destination);
             
             osc1.start(t);
-            osc2.start(t);
             osc1.stop(t + dur);
-            osc2.stop(t + dur);
             
-            bgmInterval = setTimeout(playAncientNote, (0.5 + Math.random() * 1.5) * 1000);
+            bgmInterval = setTimeout(playAncientNote, nextTime);
         };
         
         playAncientNote();

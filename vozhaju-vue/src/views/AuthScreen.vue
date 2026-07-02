@@ -2,7 +2,9 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 import { useGameStore } from '../stores/gameStore';
+import { useI18n } from 'vue-i18n';
 
+const { t } = useI18n();
 const router = useRouter();
 const store = useGameStore();
 
@@ -14,17 +16,17 @@ const isLoading = ref(false);
 
 const handleSubmit = async () => {
   if (!username.value || !password.value) {
-    errorMsg.value = "Лутфан майдонҳоро пур кунед";
+    errorMsg.value = t('error_empty');
     return;
   }
   
   if (username.value.length < 3) {
-    errorMsg.value = "Номи корбар бояд камаш 3 ҳарф бошад";
+    errorMsg.value = t('error_user_short');
     return;
   }
   
   if (password.value.length < 6) {
-    errorMsg.value = "Рамз бояд камаш 6 аломат бошад";
+    errorMsg.value = t('error_pass_short');
     return;
   }
   
@@ -51,41 +53,41 @@ const handleSubmit = async () => {
     <div class="w-full max-w-sm bg-white p-8 rounded-3xl shadow-xl border-2 border-amber-200">
       
       <div class="text-center mb-8">
-        <h1 class="text-4xl font-black text-amber-950 drop-shadow-sm mb-2">⚔️ Вожаҷӯ</h1>
-        <p class="text-amber-700 font-bold">{{ isLogin ? 'Ба профил дароед' : 'Профил созед' }}</p>
+        <h1 class="text-4xl font-black text-amber-950 drop-shadow-sm mb-2">⚔️ {{ $t('app_name') }}</h1>
+        <p class="text-amber-700 font-bold">{{ isLogin ? $t('login_subtitle') : $t('register_subtitle') }}</p>
       </div>
 
       <div class="flex bg-amber-100 rounded-xl p-1 mb-6">
         <button 
           @click="isLogin = true; errorMsg = ''" 
           :class="['flex-1 py-2 font-bold rounded-lg transition-colors', isLogin ? 'bg-white text-amber-900 shadow' : 'text-amber-700']">
-          Вуруд
+          {{ $t('login') }}
         </button>
         <button 
           @click="isLogin = false; errorMsg = ''" 
           :class="['flex-1 py-2 font-bold rounded-lg transition-colors', !isLogin ? 'bg-white text-amber-900 shadow' : 'text-amber-700']">
-          Қайдгирӣ
+          {{ $t('register') }}
         </button>
       </div>
 
       <form @submit.prevent="handleSubmit" class="space-y-4">
         <div>
-          <label class="block text-amber-900 font-bold mb-1 ml-1">Номи корбар</label>
+          <label class="block text-amber-900 font-bold mb-1 ml-1">{{ $t('username') }}</label>
           <input 
             v-model="username" 
             type="text" 
             class="w-full bg-amber-50 border border-amber-300 rounded-xl px-4 py-3 text-amber-950 font-bold focus:outline-none focus:ring-2 focus:ring-orange-500" 
-            placeholder="Номи худро нависед"
+            :placeholder="$t('username_placeholder')"
           />
         </div>
         
         <div>
-          <label class="block text-amber-900 font-bold mb-1 ml-1">Парол</label>
+          <label class="block text-amber-900 font-bold mb-1 ml-1">{{ $t('password') }}</label>
           <input 
             v-model="password" 
             type="password" 
             class="w-full bg-amber-50 border border-amber-300 rounded-xl px-4 py-3 text-amber-950 font-bold focus:outline-none focus:ring-2 focus:ring-orange-500" 
-            placeholder="Пароли худро нависед"
+            :placeholder="$t('password_placeholder')"
           />
         </div>
 

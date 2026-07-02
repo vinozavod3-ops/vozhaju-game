@@ -1,14 +1,33 @@
 <script setup>
+import { computed, onMounted, ref, onUnmounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { useGameStore } from '../stores/gameStore';
 import { useI18n } from 'vue-i18n';
-import { computed } from 'vue';
 import { getRankForScore } from '../utils/ranks';
 import { Settings, Info, Swords, ScrollText, Trophy, Coins, Globe } from 'lucide-vue-next';
 
 const router = useRouter();
 const store = useGameStore();
 const { locale } = useI18n();
+
+const isOnline = ref(navigator.onLine);
+
+const updateOnlineStatus = () => {
+  isOnline.value = navigator.onLine;
+  if (isOnline.value) {
+    store.syncProgress();
+  }
+};
+
+onMounted(() => {
+  window.addEventListener('online', updateOnlineStatus);
+  window.addEventListener('offline', updateOnlineStatus);
+});
+
+onUnmounted(() => {
+  window.removeEventListener('online', updateOnlineStatus);
+  window.removeEventListener('offline', updateOnlineStatus);
+});
 
 const navigate = (name, query = {}) => {
   router.push({ name, query });
@@ -23,14 +42,19 @@ const userRank = computed(() => getRankForScore(store.score));
 </script>
 
 <template>
-  <div class="flex flex-col h-screen bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-orange-200 via-orange-100 to-amber-200 relative overflow-hidden">
+  <div class="flex flex-col h-screen bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-orange-200 via-orange-100 to-amber-200 relative overflow-hidden" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'#b45309\' fill-opacity=\'0.05\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');">
     
+    <!-- Offline Indicator -->
+    <div v-if="!isOnline" class="absolute top-16 left-1/2 transform -translate-x-1/2 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-md z-20 animate-pulse">
+      Офлайн - Интернет нест
+    </div>
+
     <!-- Transparent Custom TopBar for Main Menu -->
     <div class="absolute top-0 left-0 right-0 p-4 flex justify-between items-center z-10">
       <div class="flex items-center gap-3">
         <button 
           @click="toggleLanguage" 
-          class="flex items-center bg-white/50 backdrop-blur-sm rounded-full px-4 py-2 shadow-sm text-amber-950 font-bold hover:bg-white/70 transition text-sm cursor-pointer border border-amber-300/50"
+          class="flex items-center bg-white/70 backdrop-blur-sm rounded-full px-4 py-2 shadow-sm text-amber-950 font-bold hover:bg-white/90 transition text-sm cursor-pointer border border-amber-300/50"
         >
           <Globe class="w-5 h-5 mr-1" />
           {{ locale === 'tg' ? 'Тоҷикӣ' : 'فارسی' }}
@@ -38,13 +62,13 @@ const userRank = computed(() => getRankForScore(store.score));
       </div>
 
       <div class="flex gap-2">
-        <div class="flex items-center bg-white/50 backdrop-blur-sm rounded-full px-4 py-2 shadow-sm border border-amber-300/50" title="Рутбаи шумо">
+        <div class="flex items-center bg-white/70 backdrop-blur-sm rounded-full px-4 py-2 shadow-sm border border-amber-300/50" title="Рутбаи шумо">
           <span class="mr-2 text-lg">{{ userRank.icon }}</span>
           <span class="font-black text-amber-950 text-md mr-2">{{ userRank.title }}</span>
           <div class="w-px h-4 bg-amber-950/20 mx-1"></div>
           <span class="font-black text-amber-950 text-md ml-1">{{ store.score }}</span>
         </div>
-        <div class="flex items-center bg-white/50 backdrop-blur-sm rounded-full px-4 py-2 shadow-sm border border-amber-300/50">
+        <div class="flex items-center bg-white/70 backdrop-blur-sm rounded-full px-4 py-2 shadow-sm border border-amber-300/50">
           <Coins class="w-5 h-5 text-yellow-500 mr-2 drop-shadow-sm" />
           <span class="font-black text-amber-950 text-md">{{ store.coins }}</span>
         </div>

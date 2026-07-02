@@ -246,8 +246,20 @@ const checkSelectedWord = () => {
   currentWordPreview.value = '...';
 };
 
-// Hints
 const getUnfoundWords = () => allWords.value.filter(w => !foundWords.value.includes(w));
+
+const getOtherScript = (word) => {
+  const entry = store.wordsData[word] || store.wordsData[Object.keys(store.wordsData).find(k => store.wordsData[k].persian === word)];
+  if (!entry) return '';
+  return locale.value === 'fa' ? entry.cyrillic : entry.persian;
+};
+
+const getOtherScriptPreview = (word) => {
+  if (foundWords.value.includes(word) || allWords.value.includes(word)) {
+    return getOtherScript(word);
+  }
+  return '';
+};
 
 const useLetterHint = () => {
   const unfound = getUnfoundWords();
@@ -300,11 +312,11 @@ const exitWinModal = () => {
 </script>
 
 <template>
-  <div class="flex flex-col min-h-screen bg-orange-50 relative" @mouseup="handlePointerUp" @touchend="handlePointerUp">
+  <div class="flex flex-col min-h-screen relative bg-[#fdf8eb]" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'#d4b483\' fill-opacity=\'0.15\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');" @mouseup="handlePointerUp" @touchend="handlePointerUp">
     
     <!-- Top Bar -->
-    <div class="flex items-center justify-between p-4 bg-amber-950 text-amber-100 shadow-md z-10">
-      <button @click="goBack" class="p-2 bg-amber-800 rounded-full hover:bg-amber-700 active:scale-90 transition">
+    <div class="flex items-center justify-between p-4 bg-amber-950/95 backdrop-blur-sm text-amber-100 shadow-md z-10 border-b-2 border-amber-800">
+      <button @click="goBack" class="p-2 bg-amber-800/80 rounded-full hover:bg-amber-700 active:scale-90 transition">
         <ChevronLeft class="w-6 h-6" />
       </button>
       <div class="flex flex-col items-center">
@@ -313,14 +325,22 @@ const exitWinModal = () => {
           <Timer class="w-3 h-3" /> {{ formattedTime() }}
         </div>
       </div>
-      <div class="flex items-center bg-amber-800 rounded-full px-3 py-1 font-bold">
+      <div class="flex items-center bg-amber-800/80 rounded-full px-3 py-1 font-bold">
         <Zap class="w-4 h-4 text-yellow-400 mr-1" />
         <span>{{ foundWords.length }}/{{ allWords.length }}</span>
       </div>
     </div>
 
+    <!-- Fallback if dictionary empty -->
+    <div v-if="!isGameActive && grid.length === 0" class="flex-1 flex flex-col items-center justify-center p-6 text-center">
+      <div class="text-5xl mb-4">🌐</div>
+      <h3 class="text-xl font-bold text-amber-900 mb-2">Луғат боргирӣ нашудааст!</h3>
+      <p class="text-amber-800 mb-6 font-medium">Лутфан интернетро пайваст кунед ва бори дигар ворид шавед.</p>
+      <button @click="goBack" class="bg-amber-600 text-white font-bold py-3 px-6 rounded-xl shadow-md">Бозгашт ба саҳифаи асосӣ</button>
+    </div>
+
     <!-- Game Area -->
-    <div class="flex-1 flex flex-col items-center justify-start p-4 overflow-y-auto">
+    <div v-else class="flex-1 flex flex-col items-center justify-start p-4 overflow-y-auto pt-6">
       
       <!-- Word List (Remaining Words) -->
       <div class="flex flex-wrap justify-center gap-2 mb-6 w-full max-w-sm">

@@ -105,5 +105,12 @@ onMounted(() => {
       </button>
     </div>
     
+    <!-- Game Completion Message -->
+    <div v-if="completedCount === levels.length && levels.length > 0" class="mt-4 bg-yellow-100 border-2 border-yellow-400 p-4 rounded-2xl text-center shadow-lg animate-pulse">
+      <div class="text-3xl mb-2">🏆</div>
+      <h3 class="text-lg font-black text-yellow-800">Офарин! Табрик!</h3>
+      <p class="text-yellow-700 font-bold text-sm">Шумо ҳамаи марҳилаҳоро гузаштед!</p>
+    </div>
+    
   </div>
 </template>

@@ -3,6 +3,7 @@ import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import { useGameStore } from '../stores/gameStore';
 import api from '../services/api';
+import { getRankForScore } from '../utils/ranks';
 import { ChevronLeft, Trophy, Medal } from 'lucide-vue-next';
 
 const router = useRouter();
@@ -15,7 +16,10 @@ const goBack = () => router.push({ name: 'MainMenu' });
 onMounted(async () => {
   try {
     const res = await api.get('/game/leaderboard');
-    leaderboard.value = res.data;
+    leaderboard.value = res.data.map(user => ({
+      ...user,
+      rank: getRankForScore(user.score)
+    }));
   } catch (error) {
     console.error('Failed to load leaderboard', error);
   } finally {
@@ -70,7 +74,8 @@ const getMedalColor = (index) => {
             </div>
             <div class="flex flex-col">
               <span class="font-bold text-stone-800 text-lg">{{ user.username }}</span>
-              <span v-if="store.user?.username === user.username" class="text-xs text-amber-600 font-bold">Ин шумо ҳастед</span>
+              <span class="text-sm font-bold text-amber-800/70">{{ user.rank?.icon }} {{ user.rank?.title }}</span>
+              <span v-if="store.user?.username === user.username" class="text-xs text-amber-600 font-bold mt-0.5">Ин шумо ҳастед</span>
             </div>
           </div>
           <div class="flex flex-col items-end">

@@ -2,6 +2,8 @@
 import { useRouter } from 'vue-router';
 import { useGameStore } from '../stores/gameStore';
 import { useI18n } from 'vue-i18n';
+import { computed } from 'vue';
+import { getRankForScore } from '../utils/ranks';
 import { Settings, Info, Swords, ScrollText, Trophy, Coins, Globe } from 'lucide-vue-next';
 
 const router = useRouter();
@@ -16,6 +18,8 @@ const toggleLanguage = () => {
   locale.value = locale.value === 'tg' ? 'fa' : 'tg';
   localStorage.setItem('vozhajuLocale', locale.value);
 };
+
+const userRank = computed(() => getRankForScore(store.score));
 </script>
 
 <template>
@@ -34,9 +38,11 @@ const toggleLanguage = () => {
       </div>
 
       <div class="flex gap-2">
-        <div class="flex items-center bg-white/50 backdrop-blur-sm rounded-full px-4 py-2 shadow-sm border border-amber-300/50">
-          <Trophy class="w-5 h-5 text-amber-600 mr-2 drop-shadow-sm" />
-          <span class="font-black text-amber-950 text-md">{{ store.score }}</span>
+        <div class="flex items-center bg-white/50 backdrop-blur-sm rounded-full px-4 py-2 shadow-sm border border-amber-300/50" title="Рутбаи шумо">
+          <span class="mr-2 text-lg">{{ userRank.icon }}</span>
+          <span class="font-black text-amber-950 text-md mr-2">{{ userRank.title }}</span>
+          <div class="w-px h-4 bg-amber-950/20 mx-1"></div>
+          <span class="font-black text-amber-950 text-md ml-1">{{ store.score }}</span>
         </div>
         <div class="flex items-center bg-white/50 backdrop-blur-sm rounded-full px-4 py-2 shadow-sm border border-amber-300/50">
           <Coins class="w-5 h-5 text-yellow-500 mr-2 drop-shadow-sm" />

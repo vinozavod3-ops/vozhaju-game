@@ -26,6 +26,12 @@ for page in doc:
 doc.close()
 
 print("Extracting words...")
+# Skip the academic introduction which contains modern Arabic/Russian loanwords
+start_idx = text.find('ОЃОЗИ КИТОБ')
+if start_idx != -1:
+    text = text[start_idx:]
+    print("Skipped introduction.")
+
 # Match Tajik Cyrillic letters
 words = re.findall(r'[А-Яа-яЁёҶҷҒғҚқӮӯҲҳ]+', text)
 print(f"Found {len(words)} total words in PDF.")
@@ -35,7 +41,8 @@ stop_words = {
     'БАР', 'Ё', 'АГАР', 'ЧУН', 'КАЙ', 'КУҶО', 'ХУД', 'МАН', 'ТУ', 
     'Ӯ', 'МО', 'ШУМО', 'ОНҲО', 'АСТ', 'БУД', 'ШУД', 'НА', 'НЕ', 'ҲАМ', 
     'НИЗ', 'ЗИ', 'БЕ', 'БАРОИ', 'СУИ', 'ҲАР', 'ЯК', 'ДУ', 'СЕ', 'ЧОР',
-    'КИ', 'МАР', 'ЗИН', 'КИН', 'ЭЙ'
+    'КИ', 'МАР', 'ЗИН', 'КИН', 'ЭЙ', 'ҚӮШУН', 'БЕК', 'ХОН', 'АМИР', 'ВАЗИР',
+    'ҚАЗО', 'ҚАДАР', 'АКНУН', 'АММО', 'ЛЕКИН', 'ВАЛЕ', 'БИНОБАР', 'Ё', 'ВУҶУД'
 }
 
 unique_new_words = set()
@@ -48,6 +55,13 @@ for w in words:
         continue
     if w_upper in existing_words:
         continue
+        
+    # Heuristics to exclude Arabic words
+    if 'Ъ' in w_upper: # Almost exclusively Arabic
+        continue
+    if w_upper.endswith('ОТ') or w_upper.endswith('ИЯТ'): # Arabic plurals/nouns
+        continue
+        
     unique_new_words.add(w_upper)
 
 new_words_list = sorted(list(unique_new_words))

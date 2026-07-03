@@ -1,0 +1,677 @@
+{
+  "ХИРАД": {
+    "meaning": "Ақл, дониш",
+    "persian": "خرد",
+    "persian_meaning": "عقل، دانش"
+  },
+  "СИПЕҲР": {
+    "meaning": "Осмон, чарх",
+    "persian": "سپهر",
+    "persian_meaning": "آسمان، چرخ"
+  },
+  "ГАВҲАР": {
+    "meaning": "Асл, ҷавҳар, сангҳои қиматбаҳо",
+    "persian": "گوهر",
+    "persian_meaning": "اصل، جوهر، سنگ‌های قیمتی"
+  },
+  "НАХУСТ": {
+    "meaning": "Аввал, ибтидо",
+    "persian": "نخست",
+    "persian_meaning": "اول، ابتدا"
+  },
+  "КАЙҲОН": {
+    "meaning": "Ҷаҳон, олам",
+    "persian": "کیهان",
+    "persian_meaning": "جهان، عالم"
+  },
+  "БАРНО": {
+    "meaning": "Ҷавон",
+    "persian": "برنا",
+    "persian_meaning": "جوان"
+  },
+  "СИТОИШ": {
+    "meaning": "Мадҳ, таъриф",
+    "persian": "ستایش",
+    "persian_meaning": "مدح، تعریف"
+  },
+  "ОФАРИНИШ": {
+    "meaning": "Хилқат, пайдоиш",
+    "persian": "آفرینش",
+    "persian_meaning": "خلقت، پیدایش"
+  },
+  "НАВИД": {
+    "meaning": "Хушхабар, мужда",
+    "persian": "نوید",
+    "persian_meaning": "مژده، خبر خوش"
+  },
+  "АНҶУМАН": {
+    "meaning": "Маҷлис, ҷамъомад",
+    "persian": "انجمن",
+    "persian_meaning": "مجلس، گردهمایی"
+  },
+  "ОЗАРМ": {
+    "meaning": "Шарм, ҳаё",
+    "persian": "آزرم",
+    "persian_meaning": "شرم، حیا"
+  },
+  "КИРДГОР": {
+    "meaning": "Офаридгор, Худованд",
+    "persian": "کردگار",
+    "persian_meaning": "آفریدگار، خداوند"
+  },
+  "ДОДГАР": {
+    "meaning": "Одил, адолатпарвар",
+    "persian": "دادگر",
+    "persian_meaning": "عادل، دادگر"
+  },
+  "ПАЙМОН": {
+    "meaning": "Аҳд, шартнома",
+    "persian": "پیمان",
+    "persian_meaning": "عهد، قرارداد"
+  },
+  "НАЖАНД": {
+    "meaning": "Ғамгин, афсурда",
+    "persian": "نژند",
+    "persian_meaning": "غمگین، افسرده"
+  },
+  "ФАРҶОМ": {
+    "meaning": "Охир, анҷом",
+    "persian": "فرجام",
+    "persian_meaning": "پایان، آخر"
+  },
+  "ДИЖАМ": {
+    "meaning": "Ғамгин, хашмгин",
+    "persian": "دژم",
+    "persian_meaning": "خشمگین، غمگین"
+  },
+  "МЕҲТАР": {
+    "meaning": "Бузургтар, сарвар",
+    "persian": "مهتر",
+    "persian_meaning": "بزرگتر، رهبر"
+  },
+  "КЕҲТАР": {
+    "meaning": "Хурдтар, тобеъ",
+    "persian": "کهتر",
+    "persian_meaning": "کوچکتر، تابع"
+  },
+  "ПЕШРАВ": {
+    "meaning": "Пешсаф, роҳбар",
+    "persian": "پیشرو",
+    "persian_meaning": "پیشگام، رهبر"
+  },
+  "СИТУДАН": {
+    "meaning": "Ситоиш кардан",
+    "persian": "ستودن",
+    "persian_meaning": "ستایش کردن"
+  },
+  "РАВОН": {
+    "meaning": "Ҷон, рӯҳ",
+    "persian": "روان",
+    "persian_meaning": "جان، روح"
+  },
+  "ШАБГИР": {
+    "meaning": "Саҳаргоҳ, субҳидам",
+    "persian": "شبگیر",
+    "persian_meaning": "سحرگاه، بامداد"
+  },
+  "НОБ": {
+    "meaning": "Холис, соф",
+    "persian": "ناب",
+    "persian_meaning": "خالص، صاف"
+  },
+  "ДИРАНГ": {
+    "meaning": "Таъхир, таваққуф",
+    "persian": "درنگ",
+    "persian_meaning": "تاخیر، توقف"
+  },
+  "БИХРАД": {
+    "meaning": "Хирадманд, доно",
+    "persian": "بخرد",
+    "persian_meaning": "خردمند، دانا"
+  },
+  "НАЖОД": {
+    "meaning": "Асл, насл",
+    "persian": "نژاد",
+    "persian_meaning": "اصل، نسل"
+  },
+  "АРҶМАНД": {
+    "meaning": "Гиромӣ, азиз",
+    "persian": "ارجمند",
+    "persian_meaning": "گرامی، عزیز"
+  },
+  "ФАРРУХ": {
+    "meaning": "Муборак, хуҷаста",
+    "persian": "فرخ",
+    "persian_meaning": "مبارک، خجسته"
+  },
+  "ШИГИФТ": {
+    "meaning": "Аҷиб, ҳайратовар",
+    "persian": "شگفت",
+    "persian_meaning": "عجیب، حیرت‌انگیز"
+  },
+  "ДОД": {
+    "meaning": "Адолат",
+    "persian": "داد",
+    "persian_meaning": "عدالت"
+  },
+  "БЕДОД": {
+    "meaning": "Зулм, ситам",
+    "persian": "بیداد",
+    "persian_meaning": "ظلم، ستم"
+  },
+  "ДАЙҲИМ": {
+    "meaning": "Тоҷ",
+    "persian": "دیهیم",
+    "persian_meaning": "تاج"
+  },
+  "ТАВОНО": {
+    "meaning": "Қудратманд, зӯрманд",
+    "persian": "توانا",
+    "persian_meaning": "قدرتمند، زورمند"
+  },
+  "ФАРОЗ": {
+    "meaning": "Боло, баландӣ",
+    "persian": "فراز",
+    "persian_meaning": "بالا، بلندی"
+  },
+  "НИШЕБ": {
+    "meaning": "Поён, пастӣ",
+    "persian": "نشیب",
+    "persian_meaning": "پایین، پستی"
+  },
+  "ПАРХОШ": {
+    "meaning": "Ҷанг, набард",
+    "persian": "پرخاش",
+    "persian_meaning": "جنگ، نبرد"
+  },
+  "ГУРД": {
+    "meaning": "Паҳлавон, қаҳрамон",
+    "persian": "گرد",
+    "persian_meaning": "پهلوان، قهرمان"
+  },
+  "РАЗМ": {
+    "meaning": "Ҷанг, муҳориба",
+    "persian": "رزم",
+    "persian_meaning": "جنگ، محاربه"
+  },
+  "БАЗМ": {
+    "meaning": "Зиёфат, хурсандӣ",
+    "persian": "بزم",
+    "persian_meaning": "ضیافت، شادی"
+  },
+  "НАВАНД": {
+    "meaning": "Аспи тездав",
+    "persian": "نوند",
+    "persian_meaning": "اسب تندرو"
+  },
+  "ҲАЮН": {
+    "meaning": "Асп ё шутури тездав",
+    "persian": "هیون",
+    "persian_meaning": "اسب یا شتر تندرو"
+  },
+  "ТАКАВАР": {
+    "meaning": "Аспи ҷангӣ, тездав",
+    "persian": "تکاور",
+    "persian_meaning": "اسب جنگی، تندرو"
+  },
+  "ДУРАФШ": {
+    "meaning": "Парчам, байрақ",
+    "persian": "درفش",
+    "persian_meaning": "پرچم، بیرق"
+  },
+  "ҶАВШАН": {
+    "meaning": "Зиреҳ, либоси ҷангӣ",
+    "persian": "جوشن",
+    "persian_meaning": "زره، لباس جنگی"
+  },
+  "КӮПОЛ": {
+    "meaning": "Гурз, амуд",
+    "persian": "کوپال",
+    "persian_meaning": "گرز، عمود"
+  },
+  "ХӮД": {
+    "meaning": "Кулоҳи оҳанин",
+    "persian": "خود",
+    "persian_meaning": "کلاه آهنین"
+  },
+  "СИПАР": {
+    "meaning": "Сипар, муҳофизат",
+    "persian": "سپر",
+    "persian_meaning": "سپر، محافظ"
+  },
+  "ЖӮПИН": {
+    "meaning": "Найзаи кӯтоҳ",
+    "persian": "ژوپین",
+    "persian_meaning": "نیزه کوتاه"
+  },
+  "ХАДАНГ": {
+    "meaning": "Тир, камон",
+    "persian": "خدنگ",
+    "persian_meaning": "تیر، کمان"
+  },
+  "СИНОН": {
+    "meaning": "Нӯги найза",
+    "persian": "سنان",
+    "persian_meaning": "نوک نیزه"
+  },
+  "НИЁМ": {
+    "meaning": "Ғилоф",
+    "persian": "نیام",
+    "persian_meaning": "غلاف"
+  },
+  "КАМАНД": {
+    "meaning": "Банд, ресмон",
+    "persian": "کمند",
+    "persian_meaning": "طناب، ریسمان"
+  },
+  "НОБАКОР": {
+    "meaning": "Бадкор, бефоида",
+    "persian": "نابکار",
+    "persian_meaning": "بدکار، بی‌فایده"
+  },
+  "БАДСИГОЛ": {
+    "meaning": "Бадандеш, душман",
+    "persian": "بدسگال",
+    "persian_meaning": "بداندیش، دشمن"
+  },
+  "ХИРА": {
+    "meaning": "Ҳайрон, тира",
+    "persian": "خیره",
+    "persian_meaning": "مبهوت، تیره"
+  },
+  "ДАМОН": {
+    "meaning": "Хурӯшон, тез",
+    "persian": "دمان",
+    "persian_meaning": "خروشان، تند"
+  },
+  "ЖИЁН": {
+    "meaning": "Хашмгин, даранда",
+    "persian": "ژیان",
+    "persian_meaning": "خشمگین، درنده"
+  },
+  "ГУРОЗОН": {
+    "meaning": "Бо виқор роҳравӣ",
+    "persian": "گرازان",
+    "persian_meaning": "با وقار راه‌رونده"
+  },
+  "ХИРОМОН": {
+    "meaning": "Бо ноз роҳравӣ",
+    "persian": "خرامان",
+    "persian_meaning": "با ناز راه‌رونده"
+  },
+  "САРВБУН": {
+    "meaning": "Ниҳоли сарв",
+    "persian": "سروبن",
+    "persian_meaning": "نهال سرو"
+  },
+  "МОҲРӮЙ": {
+    "meaning": "Зебо, хушрӯй",
+    "persian": "ماهروی",
+    "persian_meaning": "زیبا، خوش‌رو"
+  },
+  "СИМИНБАР": {
+    "meaning": "Сафедбадан",
+    "persian": "سیمین‌بر",
+    "persian_meaning": "سفیدبدن"
+  },
+  "ПЕРОЯ": {
+    "meaning": "Зинат, ороиш",
+    "persian": "پیرایه",
+    "persian_meaning": "زینت، آرایش"
+  },
+  "ЁҚУТ": {
+    "meaning": "Санги қиматбаҳо",
+    "persian": "یاقوت",
+    "persian_meaning": "سنگ قیمتی"
+  },
+  "ЗАБАРҶАД": {
+    "meaning": "Санги қиматбаҳои сабз",
+    "persian": "زبرجد",
+    "persian_meaning": "سنگ قیمتی سبز"
+  },
+  "ДЕБО": {
+    "meaning": "Матои абрешимӣ",
+    "persian": "دیبا",
+    "persian_meaning": "پارچه ابریشمی"
+  },
+  "ПАРНИЁН": {
+    "meaning": "Матои абрешимии нафис",
+    "persian": "پرنیان",
+    "persian_meaning": "پارچه ابریشمی نفیس"
+  },
+  "КОХ": {
+    "meaning": "Қаср",
+    "persian": "کاخ",
+    "persian_meaning": "قصر"
+  },
+  "АЙВОН": {
+    "meaning": "Қаср, толор",
+    "persian": "ایوان",
+    "persian_meaning": "قصر، تالار"
+  },
+  "ХОН": {
+    "meaning": "Дастархон",
+    "persian": "خوان",
+    "persian_meaning": "سفره"
+  },
+  "НАБИД": {
+    "meaning": "Шароб, май",
+    "persian": "نبید",
+    "persian_meaning": "شراب، می"
+  },
+  "БЕБОК": {
+    "meaning": "Нотарс, ҷасур",
+    "persian": "بیباک",
+    "persian_meaning": "نترس، جسور"
+  },
+  "ЧАШМА": {
+    "meaning": "Манбаи об",
+    "persian": "چشمه",
+    "persian_meaning": "منبع آب"
+  },
+  "РУХСОР": {
+    "meaning": "Чеҳра, рӯй",
+    "persian": "رخسار",
+    "persian_meaning": "چهره، روی"
+  },
+  "ФАРХУНДА": {
+    "meaning": "Хуҷаста, муборак",
+    "persian": "فرخنده",
+    "persian_meaning": "خجسته، مبارک"
+  },
+  "РОЙ": {
+    "meaning": "Андеша, фикр",
+    "persian": "رای",
+    "persian_meaning": "اندیشه، فکر"
+  },
+  "ПАЖМУРДА": {
+    "meaning": "Пажмурда, хушкшуда",
+    "persian": "پژمرده",
+    "persian_meaning": "خشک‌شده، پژمرده"
+  },
+  "МИНУ": {
+    "meaning": "Биҳишт",
+    "persian": "مینو",
+    "persian_meaning": "بهشت"
+  },
+  "БЕХАРАД": {
+    "meaning": "Нодон, беақл",
+    "persian": "بی‌خرد",
+    "persian_meaning": "نادان، بی‌عقل"
+  },
+  "ПУРХУН": {
+    "meaning": "Хунолуд",
+    "persian": "پرخون",
+    "persian_meaning": "خون‌آلود"
+  },
+  "ШАБДЕЗ": {
+    "meaning": "Аспи сиёҳранг",
+    "persian": "شبدیز",
+    "persian_meaning": "اسب سیاه‌رنگ"
+  },
+  "ФИҒОН": {
+    "meaning": "Нола, фарёд",
+    "persian": "فغان",
+    "persian_meaning": "ناله، فریاد"
+  },
+  "ШИКОР": {
+    "meaning": "Сайд",
+    "persian": "شکار",
+    "persian_meaning": "صید"
+  },
+  "АРЗАНДА": {
+    "meaning": "Лоиқ, сазовор",
+    "persian": "ارزنده",
+    "persian_meaning": "لایق، سزاوار"
+  },
+  "СИТАМ": {
+    "meaning": "Зулм",
+    "persian": "ستم",
+    "persian_meaning": "ظلم"
+  },
+  "АШК": {
+    "meaning": "Оби чашм",
+    "persian": "اشک",
+    "persian_meaning": "آب چشم"
+  },
+  "ЧЕҲРА": {
+    "meaning": "Рӯй, чеҳра",
+    "persian": "چهره",
+    "persian_meaning": "روی، چهره"
+  },
+  "ГЕСӮ": {
+    "meaning": "Мӯй, зулф",
+    "persian": "گیسو",
+    "persian_meaning": "موی، زلف"
+  },
+  "ШАБИСТОН": {
+    "meaning": "Хобгоҳ",
+    "persian": "شبستان",
+    "persian_meaning": "خوابگاه"
+  },
+  "ДОЯ": {
+    "meaning": "Парастор",
+    "persian": "دایه",
+    "persian_meaning": "پرستار"
+  },
+  "НИЁ": {
+    "meaning": "Бобо",
+    "persian": "نیا",
+    "persian_meaning": "پدربزرگ"
+  },
+  "ШӮЙ": {
+    "meaning": "Шавҳар",
+    "persian": "شوی",
+    "persian_meaning": "شوهر"
+  },
+  "ПОРСО": {
+    "meaning": "Покдоман, тақводор",
+    "persian": "پارسا",
+    "persian_meaning": "پاکدامن، پرهیزگار"
+  },
+  "ДОДАР": {
+    "meaning": "Бародар",
+    "persian": "برادر",
+    "persian_meaning": "برادر"
+  },
+  "ДИЖ": {
+    "meaning": "Қалъа, ҳисор",
+    "persian": "دژ",
+    "persian_meaning": "قلعه، حصار"
+  },
+  "НОЗ": {
+    "meaning": "Ишва, карашма",
+    "persian": "ناز",
+    "persian_meaning": "عشوه، کرشمه"
+  },
+  "ХУРШЕД": {
+    "meaning": "Офтоб",
+    "persian": "خورشید",
+    "persian_meaning": "آفتاب"
+  },
+  "МОҲ": {
+    "meaning": "Моҳтоб",
+    "persian": "ماه",
+    "persian_meaning": "مهتاب"
+  },
+  "ПАРВИН": {
+    "meaning": "Ситораи Сурайё",
+    "persian": "پروین",
+    "persian_meaning": "ستاره ثریا"
+  },
+  "НОҲИД": {
+    "meaning": "Ситораи Зӯҳра",
+    "persian": "ناهید",
+    "persian_meaning": "ستاره زهره"
+  },
+  "БАҲРОМ": {
+    "meaning": "Ситораи Миррих",
+    "persian": "بهرام",
+    "persian_meaning": "ستاره مریخ"
+  },
+  "КАЙВОН": {
+    "meaning": "Ситораи Зуҳал",
+    "persian": "کیوان",
+    "persian_meaning": "ستاره زحل"
+  },
+  "ГАРДУН": {
+    "meaning": "Осмон, чарх",
+    "persian": "گردون",
+    "persian_meaning": "آسمان، چرخ"
+  },
+  "ШОДМОНӢ": {
+    "meaning": "Хурсандӣ",
+    "persian": "شادمانی",
+    "persian_meaning": "خوشحالی"
+  },
+  "ПУШАЙМОНӢ": {
+    "meaning": "Надомат",
+    "persian": "پشیمانی",
+    "persian_meaning": "ندامت"
+  },
+  "РАШК": {
+    "meaning": "Ҳасад, бахилӣ",
+    "persian": "رشک",
+    "persian_meaning": "حسد، بخل"
+  },
+  "АНДӮҲ": {
+    "meaning": "Ғам, ғусса",
+    "persian": "اندوه",
+    "persian_meaning": "غم، غصه"
+  },
+  "СОЛОР": {
+    "meaning": "Сардор, пешво",
+    "persian": "سالار",
+    "persian_meaning": "سردار، پیشوا"
+  },
+  "ФАР": {
+    "meaning": "Шукӯҳ, ҷалол",
+    "persian": "فر",
+    "persian_meaning": "شکوه، جلال"
+  },
+  "ҲУНАР": {
+    "meaning": "Дониш, касб",
+    "persian": "هنر",
+    "persian_meaning": "دانش، حرفه"
+  },
+  "ДИЛОВАР": {
+    "meaning": "Далер, нотарс",
+    "persian": "دلاور",
+    "persian_meaning": "شجاع، نترس"
+  },
+  "ЗӮРМАНД": {
+    "meaning": "Қувватманд, тавоно",
+    "persian": "زورمند",
+    "persian_meaning": "قدرتمند، توانا"
+  },
+  "ПУРДИЛ": {
+    "meaning": "Ҷасур",
+    "persian": "پردل",
+    "persian_meaning": "شجاع"
+  },
+  "БОЗУ": {
+    "meaning": "Қисми даст, қувват",
+    "persian": "بازو",
+    "persian_meaning": "قسمت دست، قدرت"
+  },
+  "ОРИНҶ": {
+    "meaning": "Бандгоҳи даст",
+    "persian": "آرنج",
+    "persian_meaning": "بندگاه دست"
+  },
+  "МИЖЖА": {
+    "meaning": "Мӯйҳои пилки чашм",
+    "persian": "مژه",
+    "persian_meaning": "موهای پلک چشم"
+  },
+  "ХАМ": {
+    "meaning": "Каҷ, печ",
+    "persian": "خم",
+    "persian_meaning": "کج، پیچ"
+  },
+  "СУТУН": {
+    "meaning": "Поя",
+    "persian": "ستون",
+    "persian_meaning": "پایه"
+  },
+  "ТАВОНОӢ": {
+    "meaning": "Қудрат, зӯр",
+    "persian": "توانایی",
+    "persian_meaning": "قدرت، زور"
+  },
+  "ДОНОӢ": {
+    "meaning": "Ақл, дониш",
+    "persian": "دانایی",
+    "persian_meaning": "عقل، دانش"
+  },
+  "ҲАНГОМ": {
+    "meaning": "Вақт, замон",
+    "persian": "هنگام",
+    "persian_meaning": "وقت، زمان"
+  },
+  "ЗАМОН": {
+    "meaning": "Вақт, даврон",
+    "persian": "زمان",
+    "persian_meaning": "وقت، دوران"
+  },
+  "ПАГОҲ": {
+    "meaning": "Саҳаргоҳ",
+    "persian": "پگاه",
+    "persian_meaning": "سحرگاه"
+  },
+  "БЕГОҲ": {
+    "meaning": "Шом, вақти бегоҳ",
+    "persian": "بیگاه",
+    "persian_meaning": "شام"
+  },
+  "ГАВҲАРНИГОР": {
+    "meaning": "Бо гавҳар зенатёфта",
+    "persian": "گوهرنگار",
+    "persian_meaning": "با گوهر زینت‌یافته"
+  },
+  "ХУДОЙ": {
+    "meaning": "Худованд, офаридгор",
+    "persian": "خدای",
+    "persian_meaning": "خداوند، آفریدگار"
+  },
+  "РОСТГӮЙ": {
+    "meaning": "Ростгӯ, содиқ",
+    "persian": "راستگوی",
+    "persian_meaning": "راستگو، صادق"
+  },
+  "НАКӮ": {
+    "meaning": "Хуб, нек",
+    "persian": "نکو",
+    "persian_meaning": "خوب، نیک"
+  },
+  "ШИТОБ": {
+    "meaning": "Тезӣ, саросемагӣ",
+    "persian": "شتاب",
+    "persian_meaning": "تندی، عجله"
+  },
+  "ОЗОДА": {
+    "meaning": "Озод, наҷиб",
+    "persian": "آزاده",
+    "persian_meaning": "آزاد، نجیب"
+  },
+  "ОГАҲӢ": {
+    "meaning": "Хабар, маълумот",
+    "persian": "آگهی",
+    "persian_meaning": "خبر، اطلاعات"
+  },
+  "ОРЗУМАНД": {
+    "meaning": "Касе ки орзу дорад",
+    "persian": "آرزومند",
+    "persian_meaning": "کسی که آرزو دارد"
+  },
+  "РАФТАН": {
+    "meaning": "Рафтан, гузаштан",
+    "persian": "رفتن",
+    "persian_meaning": "رفتن، گذشتن"
+  },
+  "ДОДДАР": {
+    "meaning": "Адолатпарвар",
+    "persian": "دادگر",
+    "persian_meaning": "عدالت‌گستر"
+  }
+}

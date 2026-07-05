@@ -30,7 +30,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="min-h-screen bg-orange-50 font-sans text-amber-950 relative flex flex-col">
+  <div class="min-h-screen bg-slate-950 font-sans text-slate-200 relative flex flex-col">
     <!-- Router View with Transition -->
     <router-view v-slot="{ Component }">
       <transition name="fade" mode="out-in">

@@ -382,20 +382,20 @@ const exitWinModal = () => {
 </script>
 
 <template>
-  <div class="flex flex-col min-h-screen relative bg-[#fdf8eb]" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'#d4b483\' fill-opacity=\'0.15\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');" @mouseup="handlePointerUp" @touchend="handlePointerUp">
+  <div class="flex flex-col min-h-screen relative bg-slate-950 text-slate-200" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'#fbbf24\' fill-opacity=\'0.02\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');" @mouseup="handlePointerUp" @touchend="handlePointerUp">
     
     <!-- Top Bar -->
-    <div class="flex items-center justify-between p-4 bg-amber-950/95 backdrop-blur-sm text-amber-100 shadow-md z-10 border-b-2 border-amber-800">
-      <button @click="goBack" class="p-2 bg-amber-800/80 rounded-full hover:bg-amber-700 active:scale-90 transition">
-        <ChevronLeft class="w-6 h-6" />
+    <div class="flex items-center justify-between p-4 bg-slate-900/60 backdrop-blur-md text-slate-100 shadow-lg z-10 border-b border-white/10">
+      <button @click="goBack" class="p-2 bg-white/5 border border-white/10 rounded-full hover:bg-white/10 active:scale-90 transition">
+        <ChevronLeft class="w-6 h-6 text-yellow-500" />
       </button>
       <div class="flex flex-col items-center">
-        <div class="font-bold text-lg leading-tight">{{ locale === 'fa' && levelData ? $t('level', { num: levelData.id }) : (levelData?.name || $t('level', { num: '' })) }}</div>
-        <div class="text-xs text-amber-300 font-mono flex items-center gap-1">
+        <div class="font-bold text-lg leading-tight font-epic tracking-wider text-yellow-500 drop-shadow-sm">{{ locale === 'fa' && levelData ? $t('level', { num: levelData.id }) : (levelData?.name || $t('level', { num: '' })) }}</div>
+        <div class="text-xs text-slate-400 font-mono flex items-center gap-1">
           <Timer class="w-3 h-3" /> {{ formattedTime() }}
         </div>
       </div>
-      <div class="flex items-center bg-amber-800/80 rounded-full px-3 py-1 font-bold">
+      <div class="flex items-center bg-white/5 border border-white/10 rounded-full px-3 py-1 font-bold text-yellow-500 shadow-inner">
         <Zap class="w-4 h-4 text-yellow-400 mr-1" />
         <span>{{ foundWords.length }}/{{ allWords.length }}</span>
       </div>
@@ -404,9 +404,9 @@ const exitWinModal = () => {
     <!-- Fallback if dictionary empty -->
     <div v-if="!isGameActive && grid.length === 0" class="flex-1 flex flex-col items-center justify-center p-6 text-center">
       <div class="text-5xl mb-4">🌐</div>
-      <h3 class="text-xl font-bold text-amber-900 mb-2">Луғат боргирӣ нашудааст!</h3>
-      <p class="text-amber-800 mb-6 font-medium">Лутфан интернетро пайваст кунед ва бори дигар ворид шавед.</p>
-      <button @click="goBack" class="bg-amber-600 text-white font-bold py-3 px-6 rounded-xl shadow-md">Бозгашт ба саҳифаи асосӣ</button>
+      <h3 class="text-xl font-bold text-yellow-500 mb-2">Луғат боргирӣ нашудааст!</h3>
+      <p class="text-slate-400 mb-6 font-medium">Лутфан интернетро пайваст кунед ва бори дигар ворид шавед.</p>
+      <button @click="goBack" class="bg-gradient-to-r from-amber-600 to-yellow-500 text-slate-900 font-bold py-3 px-6 rounded-xl shadow-gold-glow">Бозгашт ба саҳифаи асосӣ</button>
     </div>
 
     <!-- Game Area -->
@@ -417,8 +417,8 @@ const exitWinModal = () => {
         <div 
           v-for="word in allWords" 
           :key="word" 
-          class="px-2 py-1 rounded text-sm font-bold shadow-sm border transition-colors"
-          :class="foundWords.includes(word) ? `${wordColorsMap[word]} text-white border-transparent` : 'bg-white text-amber-400 border-amber-200'"
+          class="px-3 py-1.5 rounded-full text-sm font-bold shadow-sm border transition-all duration-300"
+          :class="foundWords.includes(word) ? `${wordColorsMap[word]} text-white border-transparent shadow-[0_0_10px_currentColor]` : 'bg-slate-800 text-slate-500 border-slate-700'"
         >
           {{ foundWords.includes(word) ? word : word.replace(/./g, '_ ') }}
         </div>
@@ -427,13 +427,13 @@ const exitWinModal = () => {
       <!-- Word Preview & Combo Area -->
       <div class="mb-4 flex flex-col items-center relative">
         <transition name="combo-pop">
-          <div v-if="showComboAnimation" class="absolute -top-8 text-2xl font-black text-red-500 drop-shadow-lg z-20 whitespace-nowrap">
+          <div v-if="showComboAnimation" class="absolute -top-8 text-2xl font-black text-yellow-400 drop-shadow-[0_0_10px_rgba(250,204,21,0.8)] z-20 whitespace-nowrap">
             {{ comboMessage }}
           </div>
         </transition>
 
-        <span class="text-amber-800 font-bold mb-1"><Search class="w-4 h-4 inline" /> {{ $t('word_search') }}</span>
-        <div class="text-3xl font-black text-amber-950 min-h-[40px] tracking-widest">{{ currentWordPreview }}</div>
+        <span class="text-slate-400 font-bold mb-1 text-sm uppercase tracking-widest"><Search class="w-4 h-4 inline" /> {{ $t('word_search') }}</span>
+        <div class="text-3xl font-black text-yellow-500 min-h-[40px] tracking-widest drop-shadow-[0_0_8px_rgba(234,179,8,0.5)]">{{ currentWordPreview }}</div>
         
         <transition name="floating-text">
           <div v-if="floatingBonus" :key="floatingBonus.id" class="absolute top-0 text-xl font-black text-yellow-500 drop-shadow-md z-30 pointer-events-none">
@@ -444,7 +444,7 @@ const exitWinModal = () => {
 
       <!-- Grid -->
       <div 
-        class="grid gap-1 bg-amber-900 p-2 rounded-2xl shadow-xl w-full max-w-[360px] touch-none transition-transform"
+        class="grid gap-1 bg-slate-900/80 p-2.5 rounded-2xl shadow-[0_0_30px_rgba(0,0,0,0.5)] border border-slate-700 w-full max-w-[360px] touch-none transition-transform backdrop-blur-md"
         :class="{ 'animate-shake': isShakeAnimation }"
         :style="gridStyle"
         @mousemove="handlePointerMove"
@@ -458,48 +458,48 @@ const exitWinModal = () => {
           @touchstart.prevent="handlePointerDown(index)"
           :style="{ animationDelay: `${(index % gridSize + Math.floor(index / gridSize)) * 50}ms` }"
           :class="[
-            'letter-cell aspect-square flex items-center justify-center font-black text-2xl rounded-xl transition-colors select-none relative animate-cell-enter',
+            'letter-cell aspect-square flex items-center justify-center font-black text-2xl rounded-xl transition-all duration-200 select-none relative animate-cell-enter',
             jumpIndices.includes(index) ? 'animate-bounce-win' : '',
-            letter === '' ? 'opacity-0 pointer-events-none' : 'cursor-pointer',
-            letter !== '' && foundCells.includes(index) ? `${cellColors[index]} text-white shadow-inner scale-95 opacity-90` : 
-            letter !== '' && selectedIndices.includes(index) ? 'bg-orange-400 text-amber-950 scale-105 shadow-md' : 
-            letter !== '' && hintedCells.includes(index) ? 'bg-yellow-300 text-amber-900 ring-2 ring-yellow-500 animate-pulse shadow-lg' :
-            letter !== '' ? ((Math.floor(index / gridSize) + (index % gridSize)) % 2 === 0 ? 'bg-amber-50 text-amber-950' : 'bg-orange-100 text-amber-950') : ''
+            letter === '' ? 'opacity-0 pointer-events-none' : 'cursor-pointer hover:brightness-110',
+            letter !== '' && foundCells.includes(index) ? `${cellColors[index]} text-white shadow-[inset_0_4px_8px_rgba(0,0,0,0.4)] scale-95 opacity-90` : 
+            letter !== '' && selectedIndices.includes(index) ? 'bg-yellow-500 text-slate-900 scale-105 shadow-[0_0_15px_rgba(234,179,8,0.6)] border-b-0 translate-y-1' : 
+            letter !== '' && hintedCells.includes(index) ? 'bg-yellow-400 text-slate-900 ring-2 ring-yellow-300 animate-pulse shadow-[0_0_20px_rgba(250,204,21,0.6)]' :
+            letter !== '' ? ((Math.floor(index / gridSize) + (index % gridSize)) % 2 === 0 ? 'bg-slate-800 text-slate-200 border-b-4 border-slate-950' : 'bg-slate-700 text-slate-200 border-b-4 border-slate-900') : ''
           ]">
           {{ letter }}
-          <span v-if="bonusCells.includes(index)" class="absolute -top-2 -right-2 text-sm drop-shadow-md animate-pulse pointer-events-none">⭐</span>
+          <span v-if="bonusCells.includes(index)" class="absolute -top-2 -right-2 text-sm drop-shadow-[0_0_5px_rgba(251,191,36,0.8)] animate-pulse pointer-events-none">⭐</span>
         </div>
       </div>
       
     </div>
 
     <!-- Bottom Hints Panel -->
-    <div class="bg-amber-200 p-4 rounded-t-3xl shadow-[0_-4px_10px_rgba(0,0,0,0.1)] pb-8">
+    <div class="bg-slate-900/80 backdrop-blur-lg p-4 rounded-t-3xl shadow-[0_-10px_25px_rgba(0,0,0,0.5)] border-t border-slate-700 pb-8 mt-4">
       <div class="flex justify-between items-center mb-4">
-        <div class="font-bold text-amber-900 flex items-center gap-1">
+        <div class="font-black text-yellow-500 flex items-center gap-1 drop-shadow-sm">
           🪙 <span class="text-xl">{{ store.coins }}</span>
         </div>
-        <div v-if="store.freeHints > 0" class="bg-green-500 text-white text-xs font-bold px-2 py-1 rounded-full animate-bounce">
+        <div v-if="store.freeHints > 0" class="bg-green-600 border border-green-400 shadow-[0_0_10px_rgba(34,197,94,0.5)] text-white text-xs font-bold px-3 py-1.5 rounded-full animate-bounce">
           <Gift class="w-3 h-3 inline mr-1" />{{ store.freeHints }} {{ $t('free') }}
         </div>
       </div>
       <div class="flex gap-4">
-        <button @click="useLetterHint" class="flex-1 bg-white border-2 border-amber-300 py-3 rounded-xl font-bold text-amber-800 active:scale-95 transition-transform flex flex-col items-center">
-          <span class="text-lg">🔤 {{ $t('hint_letter') }}</span>
-          <span class="text-xs text-amber-600">10 🪙</span>
+        <button @click="useLetterHint" class="flex-1 bg-slate-800 border border-slate-600 hover:bg-slate-700 hover:border-slate-500 shadow-inner py-3 rounded-xl font-bold text-slate-200 active:scale-95 transition-all flex flex-col items-center">
+          <span class="text-lg drop-shadow-md">🔤 {{ $t('hint_letter') }}</span>
+          <span class="text-xs text-yellow-500 mt-1">10 🪙</span>
         </button>
-        <button @click="useWordHint" class="flex-1 bg-white border-2 border-amber-300 py-3 rounded-xl font-bold text-amber-800 active:scale-95 transition-transform flex flex-col items-center">
-          <span class="text-lg">📖 {{ $t('hint_word') }}</span>
-          <span class="text-xs text-amber-600">30 🪙</span>
+        <button @click="useWordHint" class="flex-1 bg-slate-800 border border-slate-600 hover:bg-slate-700 hover:border-slate-500 shadow-inner py-3 rounded-xl font-bold text-slate-200 active:scale-95 transition-all flex flex-col items-center">
+          <span class="text-lg drop-shadow-md">📖 {{ $t('hint_word') }}</span>
+          <span class="text-xs text-yellow-500 mt-1">30 🪙</span>
         </button>
       </div>
     </div>
 
     <!-- Toast Notification -->
     <transition name="toast-slide">
-      <div v-if="toastMessage" class="absolute top-20 left-1/2 transform -translate-x-1/2 bg-amber-900 text-white px-6 py-3 rounded-2xl shadow-xl z-50 text-center min-w-[250px]">
-        <div class="font-bold text-lg text-yellow-400">{{ toastMessage.title }}</div>
-        <div class="text-sm opacity-90">{{ toastMessage.message }}</div>
+      <div v-if="toastMessage" class="absolute top-20 left-1/2 transform -translate-x-1/2 bg-slate-900/95 backdrop-blur-md border border-yellow-500/30 text-white px-6 py-3 rounded-2xl shadow-[0_10px_25px_rgba(0,0,0,0.5)] z-50 text-center min-w-[250px]">
+        <div class="font-bold text-lg text-yellow-400 drop-shadow-sm">{{ toastMessage.title }}</div>
+        <div class="text-sm text-slate-200 mt-1">{{ toastMessage.message }}</div>
       </div>
     </transition>
 
